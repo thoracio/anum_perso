@@ -21,4 +21,8 @@ let taxi_dist p q =
 ;;
 
 
+let p = {x = 1.; y = 2.};;
+print_endline (string_of_float p.x);;
+
+
 
