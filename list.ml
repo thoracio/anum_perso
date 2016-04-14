@@ -25,7 +25,7 @@ type 'a node = { single: 'a; singleRight: 'a node * 'a;
 
 
 let getData = function
-    |single(d) -> d
+    |single -> single
     |singleRight(_, d) -> d
     |singleLeft(d, _) -> d
     |node(_, d, _) -> d
