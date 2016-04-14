@@ -13,6 +13,9 @@ let euclid_dist p q =
     sqrt((p.x -. q.x) ** 2. +. (p.y -. q.y) ** 2.)
 ;;
 
+(*
+Compute the taxi distance between twp points
+*)
 let taxi_dist p q =
     abs_float(p.x -. q.x) +. abs_float(p.y -. q.y)
 ;;
