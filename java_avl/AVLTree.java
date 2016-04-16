@@ -17,10 +17,10 @@ public class AVLTree<T extends Comparable<T>>
 
     public AVLTree(T r)
     {
-        root = new Node<T>(r);
-        leftChild = new AVLTree<T>();
-        rightChild = new AVLTree<T>();
-        height = 1;
+        root        = new Node<T>(r);
+        leftChild   = new AVLTree<T>();
+        rightChild  = new AVLTree<T>();
+        height      = 1;
     }
 
     public boolean isEmpty()
@@ -462,8 +462,3 @@ public class AVLTree<T extends Comparable<T>>
     }
 
 }
-
-
-
-
-

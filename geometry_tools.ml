@@ -60,7 +60,30 @@ let line_is_degenerate li = equals li.v {x=0.; y=0.}
 (*create a line from a point and a vector*)
 let create_line p_point vector = {p_1= p_point; v= vector}
 
+<<<<<<< HEAD
 let point_belongs_line p li =
   if line_is_degenerate li then false
   else if p =li.p_1 then true
   else is_multiple (p -- li.p_1) li.v
+=======
+(*
+Compute the euclidean distance between two points
+*)
+let euclid_dist p q =
+    sqrt((p.x -. q.x) ** 2. +. (p.y -. q.y) ** 2.)
+;;
+
+(*
+Compute the taxi distance between twp points
+*)
+let taxi_dist p q =
+    abs_float(p.x -. q.x) +. abs_float(p.y -. q.y)
+;;
+
+
+let p = {x = 1.; y = 2.};;
+print_endline (string_of_float p.x);;
+
+
+
+>>>>>>> 4e84f403bbc2043c756c368425e29d1083469654
