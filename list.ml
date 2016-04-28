@@ -75,13 +75,8 @@ let setNext nxt = function
 ;;
 
 
-let node n1 =
-    node{Single : 9.}
+let n1 =  Single(9.)
 ;;
-
-
-print_endline n1;;
-
 
 
 
