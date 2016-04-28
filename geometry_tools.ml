@@ -55,7 +55,7 @@ let is_multiple p_test p_tester =
 
 (*a line type, defined by a point p_1 and a vector v,
  * the vector being a point to*)
-type line = {p_1 : point; v : point} (*we use the duality between vectors 
+type line = {p_1 : point; v : point} (*we use the duality between vectors
                                        and points*)
 
 (*test for the line being a point or not*)
@@ -63,6 +63,13 @@ let line_is_degenerate li = equals li.v {x=0.; y=0.}
 
 (*create a line from a point and a vector*)
 let create_line p_point vector = {p_1= p_point; v= vector}
+
+
+let point_belongs_line p li =
+  if line_is_degenerate li then false
+  else if p =li.p_1 then true
+  else is_multiple (p -- li.p_1) li.v
+
 
 let print_point p = printf "(x=%f, y=%f)" p.x p.y
 
@@ -85,7 +92,7 @@ let relation_lines li1 li2 =
   if line_is_degenerate li1 && point_belongs_line li1.p_1 li2 then 1
   else if line_is_degenerate li1 && not (point_belongs_line li1.p_1 li2) then 0
   else if line_is_degenerate li2 && point_belongs_line li2.p_1 li1 then 1
-  else if line_is_degenerate li2 && not (point_belongs_line li2.p_1 li1) then 0 
+  else if line_is_degenerate li2 && not (point_belongs_line li2.p_1 li1) then 0
   else if is_multiple li1.v li2.v && point_belongs_line li1.p_1 li2 then 2
   else if is_multiple li1.v li2.v && not (point_belongs_line li1.p_1 li2) then 0
   else 1
