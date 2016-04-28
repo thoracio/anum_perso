@@ -75,8 +75,8 @@ let rec printListDlRec current tail =
     if current == tail then ()
     else(
         print_string " -- ";
-         printListDlRec (getNext current) tail
-         )
+        printListDlRec (getNext current) tail
+        )
 
 
 let printListDl list =
