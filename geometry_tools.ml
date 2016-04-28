@@ -14,7 +14,7 @@ type point = {x : float; y : float} (*point defined as two floats*)
 
 let create_point a b = {x=a;y=b}
 
-let create_point (a,b) = {x=a;y=b}
+let create_point2 (a,b) = {x=a;y=b}
 
 let equals p1 p2 = (p1.x=p2.x) && (p1.y=p2.y) (*equality between points*)
 
@@ -40,7 +40,8 @@ let dist2 p1 p2 = p_norm2 (minus p1 p2)
 
 let dist_infinity p1 p2 = p_norm_infinity (minus p1 p2)
 
-(*test if p_test is a multiple of p_tester*)
+(*test if the point p_test is a multiple of the
+ * point p_tester*)
 let is_multiple p_test p_tester =
   if equals p_test p_tester then true
   else if is_origin p_test then true
@@ -95,12 +96,25 @@ let relation_lines li1 li2 =
   else if is_multiple li1.v li2.v && point_belongs_line li1.p_1 li2 then 2
   else if is_multiple li1.v li2.v && not (point_belongs_line li1.p_1 li2) then 0
   else 1
+
+
+(*return a float as the distance between a line li and a point p,
+ * we don't take the square root, as is not necessary, the square
+ * root being an increasing function, the proximity is equally
+ * implied
+ *)
+let distance_line_point li p = 
+  if line_is_degenerate li then ((p.x -. li.p_1.x)**2. +. (p.y -.
+  li.p_1.y)**2.) (*if the line is degererate, is simply the distance between
+  points*)
+  else
+    let vector = li.v in
+    let lambda1 = -.(vector.x*.(p.x-.li.p_1.x) +. vector.y*.(p.y-.li.p_1.y)) in
+    let lambda2 = 1./.( vector.x**2. +. vector.y**2.) in
+    let lambda = lambda1*. lambda2 in (*the lambda(s) are simply the value where
+                                        this distance function reach its
+                                        minimum, we divide the definition, to
+                                        make easier the lecture*)
+    (p.x -. li.p_1.x +. lambda*.vector.x)**2. +. (p.y -. li.p_1.y +.
+    lambda*.vector.y)**2.
 ;;
-
-let p1 = {x=0.; y=0.}
-let vector = {x=1.; y=1.}
-let li = {p_1=p1; v=vector}
-let p = {x=2.;y=1.};;
-
-printf "%b\n" (point_belongs_line p li);;
-print_line li;;
